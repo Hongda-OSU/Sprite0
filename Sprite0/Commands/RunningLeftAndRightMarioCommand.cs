@@ -16,6 +16,7 @@ namespace Sprite0.Commands
         public void Execute()
         {
             myGame.InitializeRunningLeftAndRightMario();
+            
         }
     }
 }

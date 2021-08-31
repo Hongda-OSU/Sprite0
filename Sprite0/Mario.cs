@@ -78,6 +78,7 @@ namespace Sprite0
         protected override void Initialize()
         {
             marioSpeed = 0.8f;
+            keyboardController = new KeyboardController();
 
             base.Initialize();
         }
@@ -87,11 +88,11 @@ namespace Sprite0
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             font = Content.Load<SpriteFont>("TextInfo");
         }
-
+        
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
+         
+            keyboardController.Update();
 
             standingInPlaceMario.Update();
             runningInPlaceMario.Update();
@@ -106,10 +107,12 @@ namespace Sprite0
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             _spriteBatch.Begin();
+
             standingInPlaceMario.Draw(_spriteBatch);
             runningInPlaceMario.Draw(_spriteBatch);
             deadMovingUpAndDownMario.Draw(_spriteBatch);
             runningLeftAndRightMario.Draw(_spriteBatch);
+
             _spriteBatch.DrawString(font, info, new Vector2((_graphics.PreferredBackBufferWidth - font.MeasureString(info).X)/2, 260), Color.Black);
             _spriteBatch.End();
 
