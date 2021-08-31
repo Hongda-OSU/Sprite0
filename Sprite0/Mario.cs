@@ -35,7 +35,6 @@ namespace Sprite0
         private Vector2 runningLeftAndRightMarioPosition;
 
         private IController keyboardController;
-        private ISprite marioSprite { get; set; }
 
         public Mario()
         {
@@ -44,20 +43,40 @@ namespace Sprite0
             IsMouseVisible = true;
         }
 
-        protected override void Initialize()
+        public void InitializeStandingInPlaceMario()
         {
             standingInPlaceMarioPosition = new Vector2(_graphics.PreferredBackBufferWidth / 4,
                 _graphics.PreferredBackBufferHeight / 4);
+            standingInPlaceMarioTexture = Content.Load<Texture2D>("StandingInPlaceMario/StandingInPlaceMarioSprite");
+            standingInPlaceMario = new StandingInPlaceMarioSprite(standingInPlaceMarioTexture, standingInPlaceMarioPosition);
+        }
 
+        public void InitializeRunningInPlaceMario()
+        {
             runningInPlaceMarioPosition = new Vector2(_graphics.PreferredBackBufferWidth / 4 * 3,
                 _graphics.PreferredBackBufferHeight / 4);
+            runningInPlaceMarioTexture = Content.Load<Texture2D>("RunningInPlaceMario/RunningLeftAndRightMarioSprite");
+            runningInPlaceMario = new RunningInPlaceMarioSprite(runningInPlaceMarioTexture, runningInPlaceMarioPosition, row, column);
+        }
 
+        public void InitializeDeadMovingUpAndDownMario()
+        {
             deadMovingUpAndDownMarioPosition = new Vector2(_graphics.PreferredBackBufferWidth / 4,
                 _graphics.PreferredBackBufferHeight / 4 * 3);
+            deadMovingUpAndDownMarioTexture = Content.Load<Texture2D>("DeadMovingUpAndDownMario/DeadMovingUpAndDownMarioSprite");
+            deadMovingUpAndDownMario = new DeadMovingUpAndDownMarioSprite(deadMovingUpAndDownMarioTexture, deadMovingUpAndDownMarioPosition, marioSpeed, _graphics.PreferredBackBufferHeight);
+        }
 
+        public void InitializeRunningLeftAndRightMario()
+        {
             runningLeftAndRightMarioPosition = new Vector2(_graphics.PreferredBackBufferWidth / 4 * 3,
                 _graphics.PreferredBackBufferHeight / 4 * 3);
+            runningLeftAndRightMarioTexture = Content.Load<Texture2D>("RunningLeftAndRightMario/RunningLeftAndRightMarioSprite");
+            runningLeftAndRightMario = new RunningLeftAndRightMarioSprite(runningLeftAndRightMarioTexture, runningLeftAndRightMarioPosition, row, column, marioSpeed, _graphics.PreferredBackBufferWidth);
+        }
 
+        protected override void Initialize()
+        {
             marioSpeed = 0.8f;
 
             base.Initialize();
@@ -67,18 +86,6 @@ namespace Sprite0
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             font = Content.Load<SpriteFont>("TextInfo");
-
-            standingInPlaceMarioTexture = Content.Load<Texture2D>("StandingInPlaceMario/StandingInPlaceMarioSprite");
-            standingInPlaceMario = new StandingInPlaceMarioSprite(standingInPlaceMarioTexture, standingInPlaceMarioPosition);
-
-            runningInPlaceMarioTexture = Content.Load<Texture2D>("RunningInPlaceMario/RunningLeftAndRightMarioSprite");
-            runningInPlaceMario = new RunningInPlaceMarioSprite(runningInPlaceMarioTexture, runningInPlaceMarioPosition, row, column);
-
-            deadMovingUpAndDownMarioTexture = Content.Load<Texture2D>("DeadMovingUpAndDownMario/DeadMovingUpAndDownMarioSprite");
-            deadMovingUpAndDownMario = new DeadMovingUpAndDownMarioSprite(deadMovingUpAndDownMarioTexture, deadMovingUpAndDownMarioPosition, marioSpeed, _graphics.PreferredBackBufferHeight);
-
-            runningLeftAndRightMarioTexture = Content.Load<Texture2D>("RunningLeftAndRightMario/RunningLeftAndRightMarioSprite");
-            runningLeftAndRightMario = new RunningLeftAndRightMarioSprite(runningLeftAndRightMarioTexture, runningLeftAndRightMarioPosition, row, column, marioSpeed, _graphics.PreferredBackBufferWidth);
         }
 
         protected override void Update(GameTime gameTime)
@@ -86,7 +93,6 @@ namespace Sprite0
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
             standingInPlaceMario.Update();
             runningInPlaceMario.Update();
             deadMovingUpAndDownMario.Update();

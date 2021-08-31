@@ -9,7 +9,6 @@ namespace Sprite0.Sprites
 {
     class StandingInPlaceMarioSprite : ISprite
     {
-
         public Texture2D Texture { get; set; }
         private Vector2 position;
 

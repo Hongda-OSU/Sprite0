@@ -1,22 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Sprite0.Sprites;
 
 namespace Sprite0.Commands
 {
-    class StandInPlaceMarioCommand : ICommand
+    class RunningInPlaceMarioCommand : ICommand
     {
         private Mario myGame;
 
-        public StandInPlaceMarioCommand(Mario mario)
+        public RunningInPlaceMarioCommand(Mario mario)
         {
             myGame = mario;
         }
 
         public void Execute()
         {
-            myGame.InitializeStandingInPlaceMario();
+            myGame.InitializeRunningInPlaceMario();
         }
     }
 }

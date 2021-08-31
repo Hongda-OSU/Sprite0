@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework;
 
 namespace Sprite0.Sprites
 {
-    interface ISprite
+    public interface ISprite
     {
         void Update();
         void Draw(SpriteBatch spriteBatch);
