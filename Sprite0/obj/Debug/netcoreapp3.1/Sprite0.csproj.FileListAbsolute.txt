@@ -36,3 +36,8 @@ D:\MonoGame\Sprite0\Sprite0\obj\Debug\netcoreapp3.1\Sprite0.dll
 D:\MonoGame\Sprite0\Sprite0\obj\Debug\netcoreapp3.1\Sprite0.pdb
 D:\MonoGame\Sprite0\Sprite0\obj\Debug\netcoreapp3.1\Sprite0.genruntimeconfig.cache
 D:\MonoGame\Sprite0\Sprite0\bin\Debug\netcoreapp3.1\Content\StandingInPlaceMarioSprite\StandingInPlaceMarioSprite.xnb
+D:\MonoGame\Sprite0\Sprite0\bin\Debug\netcoreapp3.1\Content\DeadMovingUpAndDownMario\DeadMovingUpAndDownMarioSprite.xnb
+D:\MonoGame\Sprite0\Sprite0\bin\Debug\netcoreapp3.1\Content\RunningInPlaceMario\RunningLeftAndRightMarioSprite.xnb
+D:\MonoGame\Sprite0\Sprite0\bin\Debug\netcoreapp3.1\Content\RunningLeftAndRightMario\RunningLeftAndRightMarioSprite.xnb
+D:\MonoGame\Sprite0\Sprite0\bin\Debug\netcoreapp3.1\Content\StandingInPlaceMario\StandingInPlaceMarioSprite.xnb
+D:\MonoGame\Sprite0\Sprite0\bin\Debug\netcoreapp3.1\Content\TextInfo.xnb

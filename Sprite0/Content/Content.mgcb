@@ -13,7 +13,7 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin StandingInPlaceMarioSprite/StandingInPlaceMarioSprite.png
+#begin DeadMovingUpAndDownMario/DeadMovingUpAndDownMarioSprite.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -23,5 +23,48 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:StandingInPlaceMarioSprite/StandingInPlaceMarioSprite.png
+/build:DeadMovingUpAndDownMario/DeadMovingUpAndDownMarioSprite.png
+
+#begin RunningInPlaceMario/RunningLeftAndRightMarioSprite.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:RunningInPlaceMario/RunningLeftAndRightMarioSprite.png
+
+#begin RunningLeftAndRightMario/RunningLeftAndRightMarioSprite.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:RunningLeftAndRightMario/RunningLeftAndRightMarioSprite.png
+
+#begin StandingInPlaceMario/StandingInPlaceMarioSprite.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:StandingInPlaceMario/StandingInPlaceMarioSprite.png
+
+#begin TextInfo.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:TextInfo.spritefont
 

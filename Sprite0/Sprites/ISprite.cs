@@ -9,6 +9,6 @@ namespace Sprite0.Sprites
     interface ISprite
     {
         void Update();
-        void Draw(SpriteBatch spriteBatch, Vector2 location);
+        void Draw(SpriteBatch spriteBatch);
     }
 }

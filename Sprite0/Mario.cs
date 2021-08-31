@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Sprite0.Sprites;
 
 namespace Sprite0
 {
@@ -8,6 +9,30 @@ namespace Sprite0
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+        private float marioSpeed;
+        private int row = 1;
+        private int column = 4;
+        private SpriteFont font;
+
+        private string info =
+            "Credits: \nProgram Made By: Hongda Lin\nSprites from:http://www.mariouniverse.com \n/nwp-content/img/sprites/nes/smb/luigi.png";
+
+        private Texture2D standingInPlaceMarioTexture;
+        private ISprite standingInPlaceMario;
+        private Vector2 standingInPlaceMarioPosition;
+
+        private Texture2D runningInPlaceMarioTexture;
+        private ISprite runningInPlaceMario;
+        private Vector2 runningInPlaceMarioPosition;
+
+        private Texture2D deadMovingUpAndDownMarioTexture;
+        private ISprite deadMovingUpAndDownMario;
+        private Vector2 deadMovingUpAndDownMarioPosition;
+
+        private Texture2D runningLeftAndRightMarioTexture;
+        private ISprite runningLeftAndRightMario;
+        private Vector2 runningLeftAndRightMarioPosition;
+
 
         public Mario()
         {
@@ -18,7 +43,19 @@ namespace Sprite0
 
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            standingInPlaceMarioPosition = new Vector2(_graphics.PreferredBackBufferWidth / 4,
+                _graphics.PreferredBackBufferHeight / 4);
+
+            runningInPlaceMarioPosition = new Vector2(_graphics.PreferredBackBufferWidth / 4 * 3,
+                _graphics.PreferredBackBufferHeight / 4);
+
+            deadMovingUpAndDownMarioPosition = new Vector2(_graphics.PreferredBackBufferWidth / 4,
+                _graphics.PreferredBackBufferHeight / 4 * 3);
+
+            runningLeftAndRightMarioPosition = new Vector2(_graphics.PreferredBackBufferWidth / 4 * 3,
+                _graphics.PreferredBackBufferHeight / 4 * 3);
+
+            marioSpeed = 0.8f;
 
             base.Initialize();
         }
@@ -26,8 +63,19 @@ namespace Sprite0
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+            font = Content.Load<SpriteFont>("TextInfo");
 
-            // TODO: use this.Content to load your game content here
+            standingInPlaceMarioTexture = Content.Load<Texture2D>("StandingInPlaceMario/StandingInPlaceMarioSprite");
+            standingInPlaceMario = new StandingInPlaceMarioSprite(standingInPlaceMarioTexture, standingInPlaceMarioPosition);
+
+            runningInPlaceMarioTexture = Content.Load<Texture2D>("RunningInPlaceMario/RunningLeftAndRightMarioSprite");
+            runningInPlaceMario = new RunningInPlaceMarioSprite(runningInPlaceMarioTexture, runningInPlaceMarioPosition, row, column);
+
+            deadMovingUpAndDownMarioTexture = Content.Load<Texture2D>("DeadMovingUpAndDownMario/DeadMovingUpAndDownMarioSprite");
+            deadMovingUpAndDownMario = new DeadMovingUpAndDownMarioSprite(deadMovingUpAndDownMarioTexture, deadMovingUpAndDownMarioPosition, marioSpeed, _graphics.PreferredBackBufferHeight);
+
+            runningLeftAndRightMarioTexture = Content.Load<Texture2D>("RunningLeftAndRightMario/RunningLeftAndRightMarioSprite");
+            runningLeftAndRightMario = new RunningLeftAndRightMarioSprite(runningLeftAndRightMarioTexture, runningLeftAndRightMarioPosition, row, column, marioSpeed, _graphics.PreferredBackBufferWidth);
         }
 
         protected override void Update(GameTime gameTime)
@@ -36,6 +84,10 @@ namespace Sprite0
                 Exit();
 
             // TODO: Add your update logic here
+            standingInPlaceMario.Update();
+            runningInPlaceMario.Update();
+            deadMovingUpAndDownMario.Update();
+            runningLeftAndRightMario.Update();
 
             base.Update(gameTime);
         }
@@ -44,7 +96,13 @@ namespace Sprite0
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            _spriteBatch.Begin();
+            standingInPlaceMario.Draw(_spriteBatch);
+            runningInPlaceMario.Draw(_spriteBatch);
+            deadMovingUpAndDownMario.Draw(_spriteBatch);
+            runningLeftAndRightMario.Draw(_spriteBatch);
+            _spriteBatch.DrawString(font, info, new Vector2((_graphics.PreferredBackBufferWidth - font.MeasureString(info).X)/2, 260), Color.Black);
+            _spriteBatch.End();
 
             base.Draw(gameTime);
         }

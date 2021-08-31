@@ -4,9 +4,17 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>D:/MonoGame/Sprite0/Sprite0/Content/StandingInPlaceMarioSprite/StandingInPlaceMarioSprite.png</File>
+    <File>D:/MonoGame/Sprite0/Sprite0/Content/DeadMovingUpAndDownMario/DeadMovingUpAndDownMarioSprite.png</File>
+    <File>D:/MonoGame/Sprite0/Sprite0/Content/RunningInPlaceMario/RunningLeftAndRightMarioSprite.png</File>
+    <File>D:/MonoGame/Sprite0/Sprite0/Content/RunningLeftAndRightMario/RunningLeftAndRightMarioSprite.png</File>
+    <File>D:/MonoGame/Sprite0/Sprite0/Content/StandingInPlaceMario/StandingInPlaceMarioSprite.png</File>
+    <File>D:/MonoGame/Sprite0/Sprite0/Content/TextInfo.spritefont</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
   </DestFiles>
 </SourceFileCollection>

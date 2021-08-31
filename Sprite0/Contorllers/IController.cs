@@ -6,5 +6,6 @@ namespace Sprite0.Contorllers
 {
     interface IController
     {
+        void Update();
     }
 }

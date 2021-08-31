@@ -3,27 +3,29 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
+using Sprite0.Contorllers;
 
 namespace Sprite0.Sprites
 {
-    class StandingInPlaceMarioSprite
+    class StandingInPlaceMarioSprite : ISprite
     {
 
         public Texture2D Texture { get; set; }
+        private Vector2 position;
 
-        public StandingInPlaceMarioSprite(Texture2D texture)
+        public StandingInPlaceMarioSprite(Texture2D texture, Vector2 marioPosition)
         {
             Texture = texture;
+            position = marioPosition;
         }
 
         public void Update()
         {
-
         }
 
-        public void Draw(SpriteBatch spriteBatch, Vector2 location){
-        
-            spriteBatch.Draw(Texture, location , Color.White);
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(Texture, position, Color.White);
         }
     }
 }
