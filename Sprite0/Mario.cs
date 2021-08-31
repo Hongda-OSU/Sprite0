@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Sprite0.Contorllers;
 using Sprite0.Sprites;
 
 namespace Sprite0
@@ -33,6 +34,8 @@ namespace Sprite0
         private ISprite runningLeftAndRightMario;
         private Vector2 runningLeftAndRightMarioPosition;
 
+        private IController keyboardController;
+        private ISprite marioSprite { get; set; }
 
         public Mario()
         {

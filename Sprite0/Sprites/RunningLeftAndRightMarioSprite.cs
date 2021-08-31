@@ -18,8 +18,8 @@ namespace Sprite0.Sprites
         private int updateCount;
         private int totalFrames;
         private float angle = 0;
-        public Vector2 origin;
-        private SpriteEffects effect= SpriteEffects.None;
+        public Vector2 origin = new Vector2(0, 0);
+        private SpriteEffects effect = SpriteEffects.None;
 
         public RunningLeftAndRightMarioSprite(Texture2D texture, Vector2 marioPosition, int rows, int columns, float marioSpeed, float graphicWidth)
         {
@@ -32,7 +32,6 @@ namespace Sprite0.Sprites
             currentFrame = 0;
             updateCount = 100;
             totalFrames = Rows * Columns;
-            origin = new Vector2(0, 0);
         }
 
         public void Update()
