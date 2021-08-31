@@ -7,7 +7,7 @@ namespace Sprite0.Contorllers
 {
     class KeyboardController : IController
     {
-        /*
+        
         private Dictionary<Keys, ICommand> controllerMappings;
 
         public KeyboardController()
@@ -19,17 +19,17 @@ namespace Sprite0.Contorllers
         {
             controllerMappings.Add(key, command);
         }
-        */
+        
 
         public void Update()
         {
             Keys[] pressedKeys = Keyboard.GetState().GetPressedKeys();
-            /*
+          
             foreach (Keys key in pressedKeys)
             {
                 controllerMappings[key].Execute();
             }
-            */
+           
         }
 	}
 }

@@ -4,18 +4,18 @@ using System.Text;
 
 namespace Sprite0.Commands
 {
-    class Quit : ICommand
+    class StandInPlaceMarioCommand : ICommand
     {
-		private Mario myGame;
+        private Mario myGame;
 
-        public Quit(Mario mario)
+        public StandInPlaceMarioCommand(Mario mario)
         {
             myGame = mario;
         }
 
         public void Execute()
         {
-            myGame.Exit();
+            myGame.marioSprite = 
         }
-	}
+    }
 }
