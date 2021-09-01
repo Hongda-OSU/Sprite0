@@ -10,7 +10,7 @@ namespace Sprite0.Commands
 
         public Quit()
         {
-            myGame = Mario.Self;
+            myGame = Mario.self;
         }
 
         public void Execute()

@@ -8,13 +8,13 @@ namespace Sprite0.Sprites
 {
     class StandingInPlaceMarioSprite : ISprite
     {
-        public Texture2D Texture { get; set; }
-        private Vector2 position;
+        public Texture2D Texture;
+        private Vector2 Position;
 
-        public StandingInPlaceMarioSprite(Texture2D texture, Vector2 marioPosition)
+        public StandingInPlaceMarioSprite(Texture2D texture, Vector2 position)
         {
             Texture = texture;
-            position = marioPosition;
+            Position = position;
         }
 
         public void Update()
@@ -23,7 +23,7 @@ namespace Sprite0.Sprites
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Texture, position, Color.White);
+            spriteBatch.Draw(Texture, Position, Color.White);
         }
     }
 }

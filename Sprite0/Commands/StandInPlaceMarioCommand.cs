@@ -11,7 +11,7 @@ namespace Sprite0.Commands
 
         public StandInPlaceMarioCommand()
         {
-            myGame = Mario.Self;
+            myGame = Mario.self;
         }
 
         public void Execute()

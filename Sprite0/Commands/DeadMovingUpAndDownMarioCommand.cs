@@ -10,7 +10,7 @@ namespace Sprite0.Commands
 
         public DeadMovingUpAndDownMarioCommand()
         {
-            myGame = Mario.Self;
+            myGame = Mario.self;
         }
 
         public void Execute()

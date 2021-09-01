@@ -10,15 +10,16 @@ namespace Sprite0
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
-        private float marioSpeed;
-        private int row = 1;
-        private int column = 4;
+
+        private float Speed;
+        private const int Row = 1;
+        private const int Column = 4;
         private SpriteFont font;
-        private int currentSprite;
-        public static Mario Self;
+        private int CurrentSprite;
+
+        public static Mario self;
         public static int ScreenWidth;
         public static int ScreenHeight;
-
 
         private string info =
             "Credits: \nProgram Made By: Hongda Lin\nSprites from:http://www.mariouniverse.com \n/nwp-content/img/sprites/nes/smb/luigi.png";
@@ -52,10 +53,10 @@ namespace Sprite0
             IsMouseVisible = true;
             ScreenWidth = _graphics.PreferredBackBufferWidth;
             ScreenHeight = _graphics.PreferredBackBufferHeight;
-            Self = this;
+            self = this;
         }
 
-        // Initialize Sprite methods
+        // Initialize methods for different Sprites, used in Command classes
         public void InitializeStandingInPlaceMario()
         {
             standingInPlaceMarioPosition = new Vector2(ScreenWidth / 4, ScreenHeight / 4);
@@ -65,29 +66,29 @@ namespace Sprite0
         public void InitializeRunningInPlaceMario()
         {
             runningInPlaceMarioPosition = new Vector2(ScreenWidth / 4 * 3, ScreenHeight / 4);
-            runningInPlaceMario = new RunningInPlaceMarioSprite(runningInPlaceMarioTexture, runningInPlaceMarioPosition, row, column);
+            runningInPlaceMario = new RunningInPlaceMarioSprite(runningInPlaceMarioTexture, runningInPlaceMarioPosition, Row, Column);
         }
 
         public void InitializeDeadMovingUpAndDownMario()
         {
             deadMovingUpAndDownMarioPosition = new Vector2(ScreenWidth / 4, ScreenHeight / 4 * 3);
-            deadMovingUpAndDownMario = new DeadMovingUpAndDownMarioSprite(deadMovingUpAndDownMarioTexture, deadMovingUpAndDownMarioPosition, marioSpeed, _graphics.PreferredBackBufferHeight);
+            deadMovingUpAndDownMario = new DeadMovingUpAndDownMarioSprite(deadMovingUpAndDownMarioTexture, deadMovingUpAndDownMarioPosition, Speed, _graphics.PreferredBackBufferHeight);
         }
 
         public void InitializeRunningLeftAndRightMario()
         {
             runningLeftAndRightMarioPosition = new Vector2(ScreenWidth / 4 * 3, ScreenHeight / 4 * 3);
-            runningLeftAndRightMario = new RunningLeftAndRightMarioSprite(runningLeftAndRightMarioTexture, runningLeftAndRightMarioPosition, row, column, marioSpeed, _graphics.PreferredBackBufferWidth);
+            runningLeftAndRightMario = new RunningLeftAndRightMarioSprite(runningLeftAndRightMarioTexture, runningLeftAndRightMarioPosition, Row, Column, Speed, _graphics.PreferredBackBufferWidth);
         }
 
         public void SetCurrentSprite(int spriteNumber)
         {
-            currentSprite = spriteNumber;
+            CurrentSprite = spriteNumber;
         }
 
         protected override void Initialize()
         {
-            marioSpeed = 0.8f;
+            Speed = 0.8f;
             keyboardController = new KeyboardController();
             mouseController = new MouseController();
 
@@ -97,7 +98,9 @@ namespace Sprite0
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+
             font = Content.Load<SpriteFont>("TextInfo");
+
             standingInPlaceMarioTexture = Content.Load<Texture2D>("StandingInPlaceMario/StandingInPlaceMarioSprite");
             runningInPlaceMarioTexture = Content.Load<Texture2D>("RunningInPlaceMario/RunningLeftAndRightMarioSprite");
             deadMovingUpAndDownMarioTexture = Content.Load<Texture2D>("DeadMovingUpAndDownMario/DeadMovingUpAndDownMarioSprite");
@@ -112,7 +115,7 @@ namespace Sprite0
         {
             keyboardController.Update();
             mouseController.Update();
-            switch (currentSprite)
+            switch (CurrentSprite)
             {
                 case 0:
                     initialStateMario.Update();
@@ -139,7 +142,7 @@ namespace Sprite0
 
             _spriteBatch.Begin();
 
-            switch (currentSprite)
+            switch (CurrentSprite)
             {
                 case 0:
                     initialStateMario.Draw(_spriteBatch);

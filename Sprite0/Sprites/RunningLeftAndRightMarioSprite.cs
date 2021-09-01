@@ -8,57 +8,57 @@ namespace Sprite0.Sprites
 {
     class RunningLeftAndRightMarioSprite : ISprite
     {
-        public Texture2D Texture { get; set; }
-        public int Rows { get; set; }
-        public int Columns { get; set; }
-        private Vector2 position;
-        private float speed;
-        private float width;
-        private int currentFrame;
-        private int updateCount;
-        private int totalFrames;
-        private float angle = 0;
-        public Vector2 origin = new Vector2(0, 0);
-        private SpriteEffects effect = SpriteEffects.None;
+        public Texture2D Texture;
+        public int Rows;
+        public int Columns;
+        private Vector2 Position;
+        private float Speed;
+        private int Width;
+        private int CurrentFrame;
+        private int UpdateCount;
+        private int TotalFrames;
+        private float Angle = 0;
+        public Vector2 Origin = new Vector2(0, 0);
+        private SpriteEffects Effect = SpriteEffects.None;
 
-        public RunningLeftAndRightMarioSprite(Texture2D texture, Vector2 marioPosition, int rows, int columns, float marioSpeed, float graphicWidth)
+        public RunningLeftAndRightMarioSprite(Texture2D texture, Vector2 position, int rows, int columns, float speed, int width)
         {
             Texture = texture;
+            Position = position;
             Rows = rows;
             Columns = columns;
-            speed = marioSpeed;
-            width = graphicWidth;
-            position = marioPosition;
-            currentFrame = 0;
-            updateCount = 100;
-            totalFrames = Rows * Columns;
+            Speed = speed;
+            Width = width;
+            CurrentFrame = 0;
+            UpdateCount = 100;
+            TotalFrames = Rows * Columns;
         }
 
         public void Update()
         {
-            updateCount--;
-            position.X -= speed;
-            if (updateCount % totalFrames == 0)
+            UpdateCount--;
+            Position.X -= Speed;
+            if (UpdateCount % TotalFrames == 0)
             {
-                currentFrame++;
+                CurrentFrame++;
             }
-            if (currentFrame == totalFrames)
+            if (CurrentFrame == TotalFrames)
             {
-                currentFrame = 0;
-                updateCount = 100;
+                CurrentFrame = 0;
+                UpdateCount = 100;
             }
             
-            if (position.X > width - Texture.Width/Columns) //touch the right end, change direction
+            if (Position.X > Width - Texture.Width/Columns) //touch the right end, change direction
             {
-                position.X = width - Texture.Width / Columns;
-                effect = SpriteEffects.None;
-                speed = -speed;
+                Position.X = Width - Texture.Width / Columns;
+                Effect = SpriteEffects.None;
+                Speed = -Speed;
             }
-            else if (position.X < 0.5f * width) // touch quad4 left end
+            else if (Position.X < 0.5f * Width) // touch quad4 left end
             {
-                position.X = 0.5f * width;
-                effect = SpriteEffects.FlipHorizontally;
-                speed = -speed;
+                Position.X = 0.5f * Width;
+                Effect = SpriteEffects.FlipHorizontally;
+                Speed = -Speed;
             }
         }
 
@@ -66,13 +66,13 @@ namespace Sprite0.Sprites
         {
             int width = Texture.Width / Columns;
             int height = Texture.Height / Rows;
-            int row = currentFrame / Columns;
-            int column = currentFrame % Columns;
+            int row = CurrentFrame / Columns;
+            int column = CurrentFrame % Columns;
 
             Rectangle sourceRectangle = new Rectangle(width * column, height * row, width, height);
-            Rectangle destinationRectangle = new Rectangle((int)position.X, (int)position.Y, width, height);
+            Rectangle destinationRectangle = new Rectangle((int)Position.X, (int)Position.Y, width, height);
 
-            spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White, angle, origin, effect, 1);
+            spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White, Angle, Origin, Effect, 1);
         }
     }
 }

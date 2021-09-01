@@ -8,37 +8,37 @@ namespace Sprite0.Sprites
 {
     class DeadMovingUpAndDownMarioSprite : ISprite
     {
-        public Texture2D Texture { get; set; }
-        private Vector2 position;
-        private float speed;
-        private float height; 
+        public Texture2D Texture;
+        private Vector2 Position;
+        private float Speed;
+        private float Height; 
 
-        public DeadMovingUpAndDownMarioSprite(Texture2D texture, Vector2 marioPosition, float marioSpeed, float graphicHeight)
+        public DeadMovingUpAndDownMarioSprite(Texture2D texture, Vector2 position, float speed, float height)
         {
             Texture = texture;
-            position = marioPosition;
-            speed = marioSpeed;
-            height = graphicHeight;
+            Position = position;
+            Speed = speed;
+            Height = height;
         }
 
         public void Update()
         {
-            position.Y+= speed;
-            if (position.Y > height - Texture.Height) // touch the bottom, change direction
+            Position.Y+= Speed;
+            if (Position.Y > Height - Texture.Height) // touch the bottom, change direction
             {
-                position.Y = height - Texture.Height;
-                speed = -speed;
+                Position.Y = Height - Texture.Height;
+                Speed = -Speed;
             }
-            else if (position.Y < 0.5f * height) // touch quad3 top, change direction
+            else if (Position.Y < 0.5f * Height) // touch quad3 top, change direction
             {
-                position.Y = 0.5f * height;
-                speed = -speed;
+                Position.Y = 0.5f * Height;
+                Speed = -Speed;
             }
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Texture, position, Color.White);
+            spriteBatch.Draw(Texture, Position, Color.White);
         }
     }
 }
