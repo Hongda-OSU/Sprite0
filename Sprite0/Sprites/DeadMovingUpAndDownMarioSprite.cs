@@ -8,37 +8,37 @@ namespace Sprite0.Sprites
 {
     class DeadMovingUpAndDownMarioSprite : ISprite
     {
-        public Texture2D Texture;
-        private Vector2 Position;
-        private float Speed;
-        private float Height; 
+        public Texture2D texture;
+        private Vector2 position;
+        private float speed;
+        private float height; 
 
-        public DeadMovingUpAndDownMarioSprite(Texture2D texture, Vector2 position, float speed, float height)
+        public DeadMovingUpAndDownMarioSprite(Texture2D deadMovingUpAndDownMarioTexture, Vector2 deadMovingUpAndDownMarioPosition, float marioSpeed, float graphicHeight)
         {
-            Texture = texture;
-            Position = position;
-            Speed = speed;
-            Height = height;
+            texture = deadMovingUpAndDownMarioTexture;
+            position = deadMovingUpAndDownMarioPosition;
+            speed = marioSpeed;
+            height = graphicHeight;
         }
 
         public void Update()
         {
-            Position.Y+= Speed;
-            if (Position.Y > Height - Texture.Height) // touch the bottom, change direction
+            position.Y+= speed;
+            if (position.Y > height - texture.Height) // touch the bottom, change direction
             {
-                Position.Y = Height - Texture.Height;
-                Speed = -Speed;
+                position.Y = height - texture.Height;
+                speed = -speed;
             }
-            else if (Position.Y < 0.5f * Height) // touch quad3 top, change direction
+            else if (position.Y < 0.5f * height) // touch quad3 top, change direction
             {
-                Position.Y = 0.5f * Height;
-                Speed = -Speed;
+                position.Y = 0.5f * height;
+                speed = -speed;
             }
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Texture, Position, Color.White);
+            spriteBatch.Draw(texture, position, Color.White);
         }
     }
 }

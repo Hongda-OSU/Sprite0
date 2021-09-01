@@ -19,22 +19,22 @@ namespace Sprite0.Contorllers
                 new Quit().Execute();
             }
 
-            if (newState.X > 0 && newState.X < Mario.ScreenWidth/2  && newState.Y > 0 && newState.Y < Mario.ScreenHeight/2 && newState.LeftButton == ButtonState.Pressed && oldState.LeftButton == ButtonState.Released)
+            if (newState.X > 0 && newState.X < Mario.screenWidth/2  && newState.Y > 0 && newState.Y < Mario.screenHeight/2 && newState.LeftButton == ButtonState.Pressed && oldState.LeftButton == ButtonState.Released)
             {
                 new StandInPlaceMarioCommand().Execute();
             }
 
-            if (newState.X > Mario.ScreenWidth / 2 && newState.X < Mario.ScreenWidth && newState.Y > 0 && newState.Y < Mario.ScreenHeight / 2 && newState.LeftButton == ButtonState.Pressed && oldState.LeftButton == ButtonState.Released)
+            if (newState.X > Mario.screenWidth / 2 && newState.X < Mario.screenWidth && newState.Y > 0 && newState.Y < Mario.screenHeight / 2 && newState.LeftButton == ButtonState.Pressed && oldState.LeftButton == ButtonState.Released)
             {
                 new RunningInPlaceMarioCommand().Execute();
             }
 
-            if (newState.X > 0 && newState.X < Mario.ScreenWidth / 2 && newState.Y > Mario.ScreenHeight / 2 && newState.Y < Mario.ScreenHeight && newState.LeftButton == ButtonState.Pressed && oldState.LeftButton == ButtonState.Released)
+            if (newState.X > 0 && newState.X < Mario.screenWidth / 2 && newState.Y > Mario.screenHeight / 2 && newState.Y < Mario.screenHeight && newState.LeftButton == ButtonState.Pressed && oldState.LeftButton == ButtonState.Released)
             {
                 new DeadMovingUpAndDownMarioCommand().Execute();
             }
 
-            if (newState.X > Mario.ScreenWidth / 2 && newState.X < Mario.ScreenWidth && newState.Y > Mario.ScreenHeight / 2 && newState.Y < Mario.ScreenHeight && newState.LeftButton == ButtonState.Pressed && oldState.LeftButton == ButtonState.Released)
+            if (newState.X > Mario.screenWidth / 2 && newState.X < Mario.screenWidth && newState.Y > Mario.screenHeight / 2 && newState.Y < Mario.screenHeight && newState.LeftButton == ButtonState.Pressed && oldState.LeftButton == ButtonState.Released)
             {
                 new RunningLeftAndRightMarioCommand().Execute();
             }

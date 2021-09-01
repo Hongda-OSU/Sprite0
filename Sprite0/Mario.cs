@@ -11,38 +11,29 @@ namespace Sprite0
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
-        private float Speed;
-        private const int Row = 1;
-        private const int Column = 4;
         private SpriteFont font;
-        private int CurrentSprite;
-
         public static Mario self;
-        public static int ScreenWidth;
-        public static int ScreenHeight;
+
+        private float marioSpeed;
+        private const int row = 1;
+        private const int column = 4;
+        public static int screenWidth;
+        public static int screenHeight;
+        private Vector2 screenCenter;
 
         private string info =
             "Credits: \nProgram Made By: Hongda Lin\nSprites from:http://www.mariouniverse.com \n/nwp-content/img/sprites/nes/smb/luigi.png";
 
-        private ISprite initialStateMario;
-        private Vector2 initialStateMarioPosition;
-
         private Texture2D standingInPlaceMarioTexture;
-        private ISprite standingInPlaceMario;
         private Vector2 standingInPlaceMarioPosition;
-
         private Texture2D runningInPlaceMarioTexture;
-        private ISprite runningInPlaceMario;
         private Vector2 runningInPlaceMarioPosition;
-
         private Texture2D deadMovingUpAndDownMarioTexture;
-        private ISprite deadMovingUpAndDownMario;
         private Vector2 deadMovingUpAndDownMarioPosition;
-
         private Texture2D runningLeftAndRightMarioTexture;
-        private ISprite runningLeftAndRightMario;
         private Vector2 runningLeftAndRightMarioPosition;
 
+        private ISprite currentMarioSprite;
         private IController keyboardController;
         private IController mouseController;
 
@@ -51,44 +42,40 @@ namespace Sprite0
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
-            ScreenWidth = _graphics.PreferredBackBufferWidth;
-            ScreenHeight = _graphics.PreferredBackBufferHeight;
+            screenWidth = _graphics.PreferredBackBufferWidth;
+            screenHeight = _graphics.PreferredBackBufferHeight;
+            screenCenter = new Vector2((float)screenWidth / 2, (float)screenHeight / 2);
             self = this;
         }
 
         // Initialize methods for different Sprites, used in Command classes
         public void InitializeStandingInPlaceMario()
         {
-            standingInPlaceMarioPosition = new Vector2(ScreenWidth / 4, ScreenHeight / 4);
-            standingInPlaceMario = new StandingInPlaceMarioSprite(standingInPlaceMarioTexture, standingInPlaceMarioPosition);
+            standingInPlaceMarioPosition = new Vector2((float)screenWidth / 4, (float)screenHeight / 4);
+            currentMarioSprite = new StandingInPlaceMarioSprite(standingInPlaceMarioTexture, standingInPlaceMarioPosition);
         }
 
         public void InitializeRunningInPlaceMario()
         {
-            runningInPlaceMarioPosition = new Vector2(ScreenWidth / 4 * 3, ScreenHeight / 4);
-            runningInPlaceMario = new RunningInPlaceMarioSprite(runningInPlaceMarioTexture, runningInPlaceMarioPosition, Row, Column);
+            runningInPlaceMarioPosition = new Vector2(screenWidth / 4 * 3, (float)screenHeight / 4);
+            currentMarioSprite = new RunningInPlaceMarioSprite(runningInPlaceMarioTexture, runningInPlaceMarioPosition, row, column);
         }
 
         public void InitializeDeadMovingUpAndDownMario()
         {
-            deadMovingUpAndDownMarioPosition = new Vector2(ScreenWidth / 4, ScreenHeight / 4 * 3);
-            deadMovingUpAndDownMario = new DeadMovingUpAndDownMarioSprite(deadMovingUpAndDownMarioTexture, deadMovingUpAndDownMarioPosition, Speed, _graphics.PreferredBackBufferHeight);
+            deadMovingUpAndDownMarioPosition = new Vector2((float)screenWidth / 4, screenHeight / 4 * 3);
+            currentMarioSprite = new DeadMovingUpAndDownMarioSprite(deadMovingUpAndDownMarioTexture, deadMovingUpAndDownMarioPosition, marioSpeed, _graphics.PreferredBackBufferHeight);
         }
 
         public void InitializeRunningLeftAndRightMario()
         {
-            runningLeftAndRightMarioPosition = new Vector2(ScreenWidth / 4 * 3, ScreenHeight / 4 * 3);
-            runningLeftAndRightMario = new RunningLeftAndRightMarioSprite(runningLeftAndRightMarioTexture, runningLeftAndRightMarioPosition, Row, Column, Speed, _graphics.PreferredBackBufferWidth);
-        }
-
-        public void SetCurrentSprite(int spriteNumber)
-        {
-            CurrentSprite = spriteNumber;
+            runningLeftAndRightMarioPosition = new Vector2(screenWidth / 4 * 3, screenHeight / 4 * 3);
+            currentMarioSprite = new RunningLeftAndRightMarioSprite(runningLeftAndRightMarioTexture, runningLeftAndRightMarioPosition, row, column, marioSpeed, _graphics.PreferredBackBufferWidth);
         }
 
         protected override void Initialize()
         {
-            Speed = 0.8f;
+            marioSpeed = 0.8f;
             keyboardController = new KeyboardController();
             mouseController = new MouseController();
 
@@ -106,33 +93,14 @@ namespace Sprite0
             deadMovingUpAndDownMarioTexture = Content.Load<Texture2D>("DeadMovingUpAndDownMario/DeadMovingUpAndDownMarioSprite");
             runningLeftAndRightMarioTexture = Content.Load<Texture2D>("RunningLeftAndRightMario/RunningLeftAndRightMarioSprite");
 
-
-            initialStateMarioPosition = new Vector2(ScreenWidth / 2, ScreenHeight / 2);
-            initialStateMario = new StandingInPlaceMarioSprite(standingInPlaceMarioTexture, initialStateMarioPosition);
+            currentMarioSprite = new StandingInPlaceMarioSprite(standingInPlaceMarioTexture, screenCenter);
         }
         
         protected override void Update(GameTime gameTime)
         {
             keyboardController.Update();
             mouseController.Update();
-            switch (CurrentSprite)
-            {
-                case 0:
-                    initialStateMario.Update();
-                    break;
-                case 1:
-                    standingInPlaceMario.Update();
-                    break;
-                case 2:
-                    runningInPlaceMario.Update();
-                    break;
-                case 3:
-                    deadMovingUpAndDownMario.Update();
-                    break;
-                case 4:
-                    runningLeftAndRightMario.Update();
-                    break;
-            }
+            currentMarioSprite.Update();
             base.Update(gameTime);
         }
 
@@ -141,25 +109,7 @@ namespace Sprite0
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             _spriteBatch.Begin();
-
-            switch (CurrentSprite)
-            {
-                case 0:
-                    initialStateMario.Draw(_spriteBatch);
-                    break;
-                case 1:
-                    standingInPlaceMario.Draw(_spriteBatch);
-                    break;
-                case 2:
-                    runningInPlaceMario.Draw(_spriteBatch);
-                    break;
-                case 3:
-                    deadMovingUpAndDownMario.Draw(_spriteBatch);
-                    break;
-                case 4:
-                    runningLeftAndRightMario.Draw(_spriteBatch);
-                    break;
-            }
+            currentMarioSprite.Draw(_spriteBatch);
             _spriteBatch.DrawString(font, info, new Vector2((_graphics.PreferredBackBufferWidth - font.MeasureString(info).X)/2, 260), Color.Black);
             _spriteBatch.End();
 

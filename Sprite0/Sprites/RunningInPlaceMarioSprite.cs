@@ -8,51 +8,51 @@ namespace Sprite0.Sprites
 {
     class RunningInPlaceMarioSprite : ISprite
     {
-        public Texture2D Texture;
-        private int Rows;
-        private int Columns;
-        private Vector2 Position;
-        private int CurrentFrame;
-        private int UpdateCount;
-        private int TotalFrames;
+        public Texture2D texture;
+        private Vector2 position;
+        private int rows;
+        private int columns;
+        private int currentFrame;
+        private int counter;
+        private int totalFrames;
 
-        public RunningInPlaceMarioSprite(Texture2D texture, Vector2 position, int rows, int columns)
+        public RunningInPlaceMarioSprite(Texture2D runningInPlaceMarioTexture, Vector2 runningInPlaceMarioPosition, int spriteRows, int spriteColumns)
         {
-            Texture = texture;
-            Position = position;
-            Rows = rows;
-            Columns = columns;
-            CurrentFrame = 0;
-            UpdateCount = 100;
-            TotalFrames = Rows * Columns;
+            texture = runningInPlaceMarioTexture;
+            position = runningInPlaceMarioPosition;
+            rows = spriteRows;
+            columns = spriteColumns;
+            currentFrame = 0;
+            counter = 100;
+            totalFrames = rows * columns;
         }
 
         public void Update()
         {
-            UpdateCount--;
-            if (UpdateCount % TotalFrames == 0)
+            counter--;
+            if (counter % totalFrames == 0)
             {
-                CurrentFrame++;
+                currentFrame++;
             }
 
-            if (CurrentFrame == TotalFrames)
+            if (currentFrame == totalFrames)
             {
-                CurrentFrame = 0;
-                UpdateCount = 100;
+                currentFrame = 0;
+                counter = 100;
             }
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            int width = Texture.Width / Columns;
-            int height = Texture.Height / Rows;
-            int row = CurrentFrame / Columns;
-            int column = CurrentFrame % Columns;
+            int width = texture.Width / columns;
+            int height = texture.Height / rows;
+            int row = currentFrame / columns;
+            int column = currentFrame % columns;
 
             Rectangle sourceRectangle = new Rectangle(width * column, height * row, width, height);
-            Rectangle destinationRectangle = new Rectangle((int)Position.X, (int)Position.Y, width, height);
+            Rectangle destinationRectangle = new Rectangle((int)position.X, (int)position.Y, width, height);
 
-            spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White);
+            spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
         }
     }
 }

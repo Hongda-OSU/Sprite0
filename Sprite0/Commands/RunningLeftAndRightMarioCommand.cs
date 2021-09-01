@@ -6,17 +6,9 @@ namespace Sprite0.Commands
 {
     class RunningLeftAndRightMarioCommand : ICommand
     {
-        private Mario myGame;
-
-        public RunningLeftAndRightMarioCommand()
-        {
-            myGame = Mario.self;
-        }
-
         public void Execute()
         {
-            myGame.InitializeRunningLeftAndRightMario();
-            myGame.SetCurrentSprite(4);
+            Mario.self.InitializeRunningLeftAndRightMario();
         }
     }
 }
