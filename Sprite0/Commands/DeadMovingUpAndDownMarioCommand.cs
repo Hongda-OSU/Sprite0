@@ -8,14 +8,15 @@ namespace Sprite0.Commands
     {
         private Mario myGame;
 
-        public DeadMovingUpAndDownMarioCommand(Mario mario)
+        public DeadMovingUpAndDownMarioCommand()
         {
-            myGame = mario;
+            myGame = Mario.Self;
         }
 
         public void Execute()
         {
             myGame.InitializeDeadMovingUpAndDownMario();
+            myGame.SetCurrentSprite(3);
         }
     }
 }

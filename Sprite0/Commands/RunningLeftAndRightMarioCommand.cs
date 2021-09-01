@@ -8,15 +8,15 @@ namespace Sprite0.Commands
     {
         private Mario myGame;
 
-        public RunningLeftAndRightMarioCommand(Mario mario)
+        public RunningLeftAndRightMarioCommand()
         {
-            myGame = mario;
+            myGame = Mario.Self;
         }
 
         public void Execute()
         {
             myGame.InitializeRunningLeftAndRightMario();
-            
+            myGame.SetCurrentSprite(4);
         }
     }
 }

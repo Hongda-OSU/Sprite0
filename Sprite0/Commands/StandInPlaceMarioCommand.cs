@@ -9,14 +9,15 @@ namespace Sprite0.Commands
     {
         private Mario myGame;
 
-        public StandInPlaceMarioCommand(Mario mario)
+        public StandInPlaceMarioCommand()
         {
-            myGame = mario;
+            myGame = Mario.Self;
         }
 
         public void Execute()
         {
             myGame.InitializeStandingInPlaceMario();
+            myGame.SetCurrentSprite(1);
         }
     }
 }
