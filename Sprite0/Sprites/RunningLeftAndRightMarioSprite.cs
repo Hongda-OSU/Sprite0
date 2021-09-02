@@ -38,6 +38,7 @@ namespace Sprite0.Sprites
         {
             counter--;
             position.X -= speed;
+            // counter will help to slow down the speed of updating current frame
             if (counter % totalFrames == 0)
             {
                 currentFrame++;
@@ -47,14 +48,15 @@ namespace Sprite0.Sprites
                 currentFrame = 0;
                 counter = 100;
             }
-            
-            if (position.X > width - texture.Width/columns) //touch the right end, change direction
+            // sprite touch the right end, set position, mirror sprite if sprite is mirrored and change direction
+            if (position.X > width - texture.Width/columns) 
             {
                 position.X = width - texture.Width / columns;
                 effect = SpriteEffects.None;
                 speed = -speed;
             }
-            else if (position.X < 0.5f * width) // touch quad4 left end
+            // sprite touch Quad4 left end, set position, mirror sprite and change direction
+            else if (position.X < 0.5f * width) 
             {
                 position.X = 0.5f * width;
                 effect = SpriteEffects.FlipHorizontally;
@@ -71,7 +73,7 @@ namespace Sprite0.Sprites
 
             Rectangle sourceRectangle = new Rectangle(width * column, height * row, width, height);
             Rectangle destinationRectangle = new Rectangle((int)position.X, (int)position.Y, width, height);
-
+            // an overload for Draw that could flip sprite
             spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White, angle, origin, effect, 1);
         }
     }

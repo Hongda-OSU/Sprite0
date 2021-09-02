@@ -29,6 +29,7 @@ namespace Sprite0.Sprites
 
         public void Update()
         {
+            // counter will help to slow down the speed of updating current frame
             counter--;
             if (counter % totalFrames == 0)
             {

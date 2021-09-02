@@ -24,12 +24,14 @@ namespace Sprite0.Sprites
         public void Update()
         {
             position.Y+= speed;
-            if (position.Y > height - texture.Height) // touch the bottom, change direction
+            // sprite touch the bottom, set position and change direction
+            if (position.Y > height - texture.Height) 
             {
                 position.Y = height - texture.Height;
                 speed = -speed;
             }
-            else if (position.Y < 0.5f * height) // touch quad3 top, change direction
+            // sprite touch Quad3 top, set position and change direction
+            else if (position.Y < 0.5f * height) 
             {
                 position.Y = 0.5f * height;
                 speed = -speed;

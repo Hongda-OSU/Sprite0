@@ -17,6 +17,7 @@ namespace Sprite0.Contorllers
             RegisterCommand();
         }
 
+        // register each key with different command
         public void RegisterCommand()
         {
             keyboardControllerMappings.Add(Keys.D0, new Quit());
@@ -29,9 +30,9 @@ namespace Sprite0.Contorllers
         public void Update()
         {
             Keys[] pressedKeys = Keyboard.GetState().GetPressedKeys();
-            
             foreach (Keys key in pressedKeys)
             {
+                // only execute the command when the stored key is pressed
                 if(keyboardControllerMappings.Keys.Contains(key))
                 {
                     keyboardControllerMappings[key].Execute();

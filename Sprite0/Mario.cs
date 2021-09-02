@@ -11,18 +11,21 @@ namespace Sprite0
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
-        private SpriteFont font;
+        // property that represent the instance of current Mario class 
         public static Mario self;
 
+        // properties used for text 
+        private SpriteFont font;
+        private string info =
+            "Credits: \nProgram Made By: Hongda Lin\nSprites from:http://www.mariouniverse.com \n/nwp-content/img/sprites/nes/smb/luigi.png";
+
+        // properties used for sprite texture, position and animation
         private float marioSpeed;
-        private const int row = 1;
-        private const int column = 4;
+        private int row = 1;
+        private int column = 4;
         public static int screenWidth;
         public static int screenHeight;
         private Vector2 screenCenter;
-
-        private string info =
-            "Credits: \nProgram Made By: Hongda Lin\nSprites from:http://www.mariouniverse.com \n/nwp-content/img/sprites/nes/smb/luigi.png";
 
         private Texture2D standingInPlaceMarioTexture;
         private Vector2 standingInPlaceMarioPosition;
@@ -33,6 +36,7 @@ namespace Sprite0
         private Texture2D runningLeftAndRightMarioTexture;
         private Vector2 runningLeftAndRightMarioPosition;
 
+        // properties with their interface type that used in Update and Draw method
         private ISprite currentMarioSprite;
         private IController keyboardController;
         private IController mouseController;
@@ -42,13 +46,15 @@ namespace Sprite0
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+            // set basic properties of MonoGame screen width and height
             screenWidth = _graphics.PreferredBackBufferWidth;
             screenHeight = _graphics.PreferredBackBufferHeight;
             screenCenter = new Vector2((float)screenWidth / 2, (float)screenHeight / 2);
+            // self is the current game state
             self = this;
         }
 
-        // Initialize methods for different Sprites, used in Command classes
+        // Initialize methods for different Sprites. Command classes will use these to set current Mario sprite, which is used in Update and Draw
         public void InitializeStandingInPlaceMario()
         {
             standingInPlaceMarioPosition = new Vector2((float)screenWidth / 4, (float)screenHeight / 4);
@@ -78,7 +84,6 @@ namespace Sprite0
             marioSpeed = 0.8f;
             keyboardController = new KeyboardController();
             mouseController = new MouseController();
-
             base.Initialize();
         }
 
@@ -86,13 +91,13 @@ namespace Sprite0
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            // load sprite text and textures
             font = Content.Load<SpriteFont>("TextInfo");
-
             standingInPlaceMarioTexture = Content.Load<Texture2D>("StandingInPlaceMario/StandingInPlaceMarioSprite");
             runningInPlaceMarioTexture = Content.Load<Texture2D>("RunningInPlaceMario/RunningLeftAndRightMarioSprite");
             deadMovingUpAndDownMarioTexture = Content.Load<Texture2D>("DeadMovingUpAndDownMario/DeadMovingUpAndDownMarioSprite");
             runningLeftAndRightMarioTexture = Content.Load<Texture2D>("RunningLeftAndRightMario/RunningLeftAndRightMarioSprite");
-
+            // ???
             currentMarioSprite = new StandingInPlaceMarioSprite(standingInPlaceMarioTexture, screenCenter);
         }
         
