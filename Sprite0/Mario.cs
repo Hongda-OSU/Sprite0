@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System.Collections.Generic;
+using System.Windows.Forms;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Sprite0.Contorllers;
@@ -11,13 +12,10 @@ namespace Sprite0
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
-        // property that represent the instance of current Mario class 
-        public static Mario self;
-
         // properties used for text 
         private SpriteFont font;
         private string info =
-            "Credits: \nProgram Made By: Hongda Lin\nSprites from:http://www.mariouniverse.com \n/nwp-content/img/sprites/nes/smb/luigi.png";
+            "Credits: \nProgram Made By: Hongda Lin\nSprites from: http://www.mariouniverse.com \n/nwp-content/img/sprites/nes/smb/luigi.png";
 
         // properties used for sprite texture, position and animation
         private float marioSpeed;
@@ -26,7 +24,6 @@ namespace Sprite0
         public static int screenWidth;
         public static int screenHeight;
         private Vector2 screenCenter;
-
         private Texture2D standingInPlaceMarioTexture;
         private Vector2 standingInPlaceMarioPosition;
         private Texture2D runningInPlaceMarioTexture;
@@ -38,8 +35,7 @@ namespace Sprite0
 
         // properties with their interface type that used in Update and Draw method
         private ISprite currentMarioSprite;
-        private IController keyboardController;
-        private IController mouseController;
+        private List<IController> myController;
 
         public Mario()
         {
@@ -50,8 +46,6 @@ namespace Sprite0
             screenWidth = _graphics.PreferredBackBufferWidth;
             screenHeight = _graphics.PreferredBackBufferHeight;
             screenCenter = new Vector2((float)screenWidth / 2, (float)screenHeight / 2);
-            // self is the current game state
-            self = this;
         }
 
         // Initialize methods for different Sprites. Command classes will use these to set current Mario sprite, which is used in Update and Draw
@@ -82,8 +76,13 @@ namespace Sprite0
         protected override void Initialize()
         {
             marioSpeed = 0.8f;
-            keyboardController = new KeyboardController();
-            mouseController = new MouseController();
+            myController = new List<IController>
+            {
+                // passing "this", which is current game state to each controller class
+                new KeyboardController(this),
+                new MouseController(this)
+            };
+
             base.Initialize();
         }
 
@@ -97,15 +96,19 @@ namespace Sprite0
             runningInPlaceMarioTexture = Content.Load<Texture2D>("RunningInPlaceMario/RunningLeftAndRightMarioSprite");
             deadMovingUpAndDownMarioTexture = Content.Load<Texture2D>("DeadMovingUpAndDownMario/DeadMovingUpAndDownMarioSprite");
             runningLeftAndRightMarioTexture = Content.Load<Texture2D>("RunningLeftAndRightMario/RunningLeftAndRightMarioSprite");
-            // ???
+            // This will initialize the currentMarioSprite to the center of the screen when the game starts, but may not be the best place to put it...
             currentMarioSprite = new StandingInPlaceMarioSprite(standingInPlaceMarioTexture, screenCenter);
         }
         
         protected override void Update(GameTime gameTime)
         {
-            keyboardController.Update();
-            mouseController.Update();
-            currentMarioSprite.Update();
+            foreach (IController currentController in myController)
+            {
+                // Update controller base on user action 
+                currentController.Update();
+            }
+            // Update current Mario sprite with a constant frame rate, which is 1/60 * 10 approximately
+            currentMarioSprite.Update(gameTime.ElapsedGameTime.TotalSeconds * 10);
             base.Update(gameTime);
         }
 
@@ -114,7 +117,9 @@ namespace Sprite0
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             _spriteBatch.Begin();
+            // Draw different state of Mario base on current Mario sprite
             currentMarioSprite.Draw(_spriteBatch);
+            // Draw text sprite on the screen
             _spriteBatch.DrawString(font, info, new Vector2((_graphics.PreferredBackBufferWidth - font.MeasureString(info).X)/2, 260), Color.Black);
             _spriteBatch.End();
 

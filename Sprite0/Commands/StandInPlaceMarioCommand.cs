@@ -7,9 +7,15 @@ namespace Sprite0.Commands
 {
     class StandInPlaceMarioCommand : ICommand
     {
+        private Mario myGame;
+
+        public StandInPlaceMarioCommand(Mario mario)
+        {
+            myGame = mario;
+        }
         public void Execute()
         {
-            Mario.self.InitializeStandingInPlaceMario();
+            myGame.InitializeStandingInPlaceMario();
         }
     }
 }

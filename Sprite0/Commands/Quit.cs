@@ -6,9 +6,15 @@ namespace Sprite0.Commands
 {
     class Quit : ICommand
     {
+        private Mario myGame;
+
+        public Quit(Mario mario)
+        {
+            myGame = mario;
+        }
         public void Execute()
         {
-            Mario.self.Exit();
+            myGame.Exit();
         }
 	}
 }

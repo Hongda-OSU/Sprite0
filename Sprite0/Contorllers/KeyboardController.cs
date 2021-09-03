@@ -10,21 +10,22 @@ namespace Sprite0.Contorllers
     class KeyboardController : IController
     {
         private Dictionary<Keys, ICommand> keyboardControllerMappings;
-
-        public KeyboardController()
+        private Mario myGame;
+        public KeyboardController(Mario mario)
         {
             keyboardControllerMappings = new Dictionary<Keys, ICommand>();
+            myGame = mario;
             RegisterCommand();
         }
 
         // register each key with different command
         public void RegisterCommand()
         {
-            keyboardControllerMappings.Add(Keys.D0, new Quit());
-            keyboardControllerMappings.Add(Keys.D1, new StandInPlaceMarioCommand());
-            keyboardControllerMappings.Add(Keys.D2, new RunningInPlaceMarioCommand());
-            keyboardControllerMappings.Add(Keys.D3, new DeadMovingUpAndDownMarioCommand());
-            keyboardControllerMappings.Add(Keys.D4, new RunningLeftAndRightMarioCommand());
+            keyboardControllerMappings.Add(Keys.D0, new Quit(myGame));
+            keyboardControllerMappings.Add(Keys.D1, new StandInPlaceMarioCommand(myGame));
+            keyboardControllerMappings.Add(Keys.D2, new RunningInPlaceMarioCommand(myGame));
+            keyboardControllerMappings.Add(Keys.D3, new DeadMovingUpAndDownMarioCommand(myGame));
+            keyboardControllerMappings.Add(Keys.D4, new RunningLeftAndRightMarioCommand(myGame));
         }
         
         public void Update()

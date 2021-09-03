@@ -6,9 +6,15 @@ namespace Sprite0.Commands
 {
     class DeadMovingUpAndDownMarioCommand : ICommand
     {
+        private Mario myGame;
+
+        public DeadMovingUpAndDownMarioCommand(Mario mario)
+        {
+            myGame = mario;
+        }
         public void Execute()
         {
-            Mario.self.InitializeDeadMovingUpAndDownMario();
+            myGame.InitializeDeadMovingUpAndDownMario();
         }
     }
 }

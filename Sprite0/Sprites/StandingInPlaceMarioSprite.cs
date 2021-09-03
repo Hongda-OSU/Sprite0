@@ -17,7 +17,7 @@ namespace Sprite0.Sprites
             position = standingInPlaceMarioPosition;
         }
 
-        public void Update()
+        public void Update(double frameRate)
         {
         }
 

@@ -21,7 +21,7 @@ namespace Sprite0.Sprites
             height = graphicHeight;
         }
 
-        public void Update()
+        public void Update(double frameRate)
         {
             position.Y+= speed;
             // sprite touch the bottom, set position and change direction

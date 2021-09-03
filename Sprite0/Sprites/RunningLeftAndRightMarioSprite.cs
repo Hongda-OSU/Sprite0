@@ -14,8 +14,7 @@ namespace Sprite0.Sprites
         private Vector2 position;
         private float speed;
         private int width;
-        private int currentFrame;
-        private int counter;
+        private double currentFrame;
         private int totalFrames;
         private float angle = 0f;
         public Vector2 origin = new Vector2(0, 0);
@@ -30,23 +29,18 @@ namespace Sprite0.Sprites
             speed = marioSpeed;
             width = graphicWidth;
             currentFrame = 0;
-            counter = 100;
             totalFrames = rows * columns;
         }
 
-        public void Update()
+        public void Update(double frameRate)
         {
-            counter--;
+           
             position.X -= speed;
-            // counter will help to slow down the speed of updating current frame
-            if (counter % totalFrames == 0)
-            {
-                currentFrame++;
-            }
-            if (currentFrame == totalFrames)
+            // Update current frame base on frame rate
+            currentFrame += frameRate;
+            if (currentFrame > totalFrames)
             {
                 currentFrame = 0;
-                counter = 100;
             }
             // sprite touch the right end, set position, mirror sprite if sprite is mirrored and change direction
             if (position.X > width - texture.Width/columns) 
@@ -68,8 +62,8 @@ namespace Sprite0.Sprites
         {
             int width = texture.Width / columns;
             int height = texture.Height / rows;
-            int row = currentFrame / columns;
-            int column = currentFrame % columns;
+            int row = (int)currentFrame / columns;
+            int column = (int)currentFrame % columns;
 
             Rectangle sourceRectangle = new Rectangle(width * column, height * row, width, height);
             Rectangle destinationRectangle = new Rectangle((int)position.X, (int)position.Y, width, height);
