@@ -13,7 +13,7 @@ namespace Sprite0.Sprites
         private int rows;
         private int columns;
         private double currentFrame;
-        private double totalFrames;
+        private int totalFrames;
 
         public RunningInPlaceMarioSprite(Texture2D runningInPlaceMarioTexture, Vector2 runningInPlaceMarioPosition, int spriteRows, int spriteColumns)
         {

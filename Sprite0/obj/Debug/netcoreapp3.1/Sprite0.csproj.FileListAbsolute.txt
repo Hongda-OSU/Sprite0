@@ -1,3 +1,9 @@
+D:\MonoGame\Sprite0\Sprite0\bin\Debug\netcoreapp3.1\Content\DeadMovingUpAndDownMario\DeadMovingUpAndDownMarioSprite.xnb
+D:\MonoGame\Sprite0\Sprite0\bin\Debug\netcoreapp3.1\Content\RunningInPlaceMario\RunningLeftAndRightMarioSprite.xnb
+D:\MonoGame\Sprite0\Sprite0\bin\Debug\netcoreapp3.1\Content\RunningLeftAndRightMario\RunningLeftAndRightMarioSprite.xnb
+D:\MonoGame\Sprite0\Sprite0\bin\Debug\netcoreapp3.1\Content\StandingInPlaceMarioSprite\StandingInPlaceMarioSprite.xnb
+D:\MonoGame\Sprite0\Sprite0\bin\Debug\netcoreapp3.1\Content\StandingInPlaceMario\StandingInPlaceMarioSprite.xnb
+D:\MonoGame\Sprite0\Sprite0\bin\Debug\netcoreapp3.1\Content\TextInfo.xnb
 D:\MonoGame\Sprite0\Sprite0\bin\Debug\netcoreapp3.1\Sprite0.exe
 D:\MonoGame\Sprite0\Sprite0\bin\Debug\netcoreapp3.1\Sprite0.deps.json
 D:\MonoGame\Sprite0\Sprite0\bin\Debug\netcoreapp3.1\Sprite0.runtimeconfig.json
@@ -26,7 +32,6 @@ D:\MonoGame\Sprite0\Sprite0\bin\Debug\netcoreapp3.1\runtimes\rhel-x64\native\lib
 D:\MonoGame\Sprite0\Sprite0\bin\Debug\netcoreapp3.1\runtimes\win7-arm\native\libuv.dll
 D:\MonoGame\Sprite0\Sprite0\bin\Debug\netcoreapp3.1\runtimes\win7-x64\native\libuv.dll
 D:\MonoGame\Sprite0\Sprite0\bin\Debug\netcoreapp3.1\runtimes\win7-x86\native\libuv.dll
-D:\MonoGame\Sprite0\Sprite0\obj\Debug\netcoreapp3.1\Sprite0.csproj.AssemblyReference.cache
 D:\MonoGame\Sprite0\Sprite0\obj\Debug\netcoreapp3.1\Sprite0.GeneratedMSBuildEditorConfig.editorconfig
 D:\MonoGame\Sprite0\Sprite0\obj\Debug\netcoreapp3.1\Sprite0.AssemblyInfoInputs.cache
 D:\MonoGame\Sprite0\Sprite0\obj\Debug\netcoreapp3.1\Sprite0.AssemblyInfo.cs
@@ -35,9 +40,4 @@ D:\MonoGame\Sprite0\Sprite0\obj\Debug\netcoreapp3.1\Sprite0.csproj.CopyComplete
 D:\MonoGame\Sprite0\Sprite0\obj\Debug\netcoreapp3.1\Sprite0.dll
 D:\MonoGame\Sprite0\Sprite0\obj\Debug\netcoreapp3.1\Sprite0.pdb
 D:\MonoGame\Sprite0\Sprite0\obj\Debug\netcoreapp3.1\Sprite0.genruntimeconfig.cache
-D:\MonoGame\Sprite0\Sprite0\bin\Debug\netcoreapp3.1\Content\StandingInPlaceMarioSprite\StandingInPlaceMarioSprite.xnb
-D:\MonoGame\Sprite0\Sprite0\bin\Debug\netcoreapp3.1\Content\DeadMovingUpAndDownMario\DeadMovingUpAndDownMarioSprite.xnb
-D:\MonoGame\Sprite0\Sprite0\bin\Debug\netcoreapp3.1\Content\RunningInPlaceMario\RunningLeftAndRightMarioSprite.xnb
-D:\MonoGame\Sprite0\Sprite0\bin\Debug\netcoreapp3.1\Content\RunningLeftAndRightMario\RunningLeftAndRightMarioSprite.xnb
-D:\MonoGame\Sprite0\Sprite0\bin\Debug\netcoreapp3.1\Content\StandingInPlaceMario\StandingInPlaceMarioSprite.xnb
-D:\MonoGame\Sprite0\Sprite0\bin\Debug\netcoreapp3.1\Content\TextInfo.xnb
+D:\MonoGame\Sprite0\Sprite0\obj\Debug\netcoreapp3.1\Sprite0.csproj.AssemblyReference.cache

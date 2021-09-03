@@ -1,1 +1,3 @@
 This is the folder that contains the original sprite sheet and the sprite assets I edit.
+I might misspelled sprint0 to sprite0 when I first begin this project. My bad...
+Use "Open a project or solution" and select Sprite0.sln to build project.
