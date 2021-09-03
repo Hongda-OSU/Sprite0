@@ -1,0 +1,1 @@
+This is the folder that contains the original sprite sheet and the sprite assets I edit.
